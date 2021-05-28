@@ -1,46 +1,73 @@
+---
+layout: default
+title: main
+---
+
+<section>
+  <h1>{{site.title}}</h1>
+  <p>{{ site.description }}</p>
+</section>
+
+<section>
+  <h2>Mes projets</h2>
+  <p></p>
+</section>
+
+<section>
+  <h2>Mon parcours</h2>
+  <p></p>
+</section>
+<script type="text/javascript" src="/assets/js/three.js"></script>
+
+<script type="text/javascript">
+    const scene = new THREE.Scene();
+    const backgroundColor = new THREE.Color("midnightblue")
+
+    scene.background = backgroundColor;
+
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+    const renderer = new THREE.WebGLRenderer();
+    //renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild( renderer.domElement );
+
+    const light = new THREE.SpotLight( 0xffffff );
+    light.position.set(0, 5, 0);
+    light.castShadow = true;
+    light.shadow.mapSize.width = 1024;
+    light.shadow.mapSize.height = 1024;
+
+    light.shadow.camera.near = 500;
+    light.shadow.camera.far = 4000;
+    light.shadow.camera.fov = 30;
+    scene.add( light );
+
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial( { color: 0x00aa00 } );
+    const cube = new THREE.Mesh( geometry, material );
+    cube.castShadow= true;
+    scene.add( cube );
+
+    const helper = new THREE.CameraHelper( light.shadow.camera );
+    scene.add( helper );
 
 
-<!DOCTYPE html>
-<html lang="fr" class="has-navbar-fixed-top">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.css">
-    
-    <meta name="author" content="Junior Grégoire">
-    <meta name="keywords" content="junior, gregoire, web developper, django, vuejs, bulma">
 
-    <meta property="og:type" content="website">
+    camera.position.z = 5;
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:site_name" content="Junior Grégoire, Dévelopeur web">
-    <meta name="twitter:image:alt" content="Logo de ParkMonBaïk">
+    const animate = function () {
+				requestAnimationFrame( animate );
 
-    <link rel="canonical" href="https://juniorgreg.github.io">
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
 
-    <meta property="og:title" content="" />
-    <meta property="og:url" content="https://juniorgreg.github.io" />
-    <meta property="og:image" content="" />
-    <meta name="description" property="og:description" content="Voici le modeste portefolio du développeur web Junior Grégoire"/>
+				renderer.render( scene, camera );
+			};
 
+		animate();
 
-    <title>Junior Grégoire, Développeur Web</title>
-  </head>
-  <body>
-      <section class="hero">
-        <div class="hero-body">
-          <p class="title">
-            Junior Grégoire
-          </p>
-          <p class="subtitle">
-            Développeur web
-          </p>
-        </div>
-      </section>
-      <section>
-        Soon ....
-    </section>
-   
-  </body>
-</html>
+    console.log("loader")
+</script>
