@@ -10,59 +10,103 @@ title: main
 
 <section>
   <h2>Mes projets</h2>
-  <p></p>
+  <p>Voici mes proyectos;</p>
+  <a href="https://moisiometre.xyz">Le blogue du MoisiOMètre</a><br>
+  <a href="https://parkmonbaik.xyz">ParkMonBaïk</a>
 </section>
 
 <section>
   <h2>Mon parcours</h2>
-  <p></p>
+  <p>Mein parcours</p>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <p>Couriel: <a href="mailto:{{site.email}}">{{site.email}}</a></p>
+  <p>Github: <a href="https://github.com/{{site.github_username}}">{{site.github_username}}</a></p>
+
+
 </section>
 <script type="text/javascript" src="/assets/js/three.js"></script>
+<script type="text/javascript" type="Module" src="/assets/js/OrbitControls.js">
+
+</script>
 
 <script type="text/javascript">
-    const scene = new THREE.Scene();
-    const backgroundColor = new THREE.Color("midnightblue")
 
+    function random(min, max) {
+      const number = min + Math.random() * (max - min);
+      //console.log(number)
+      return number
+    }
+
+    function randomInteger(min, max){
+
+      return Math.round(random(min, max))
+    }
+
+    function getColor(temp){
+      //hue between 0 and 250
+      //temp between 3500K and 10000K
+      let hue = (temp - 3000) * 250 / 37000;
+      let luminosity = 50 + 50*Math.round(Math.abs(Math.tanh((temp - 2000)/20000)));
+
+      /*if(luminosity > 99){
+        console.log(hue)
+      }*/
+
+      return `hsl(${hue}, 100%, ${luminosity}%)`
+    }
+
+    function addConstellation(scene){
+      function createStar(scene){
+        const starGeo = new THREE.SphereGeometry(random(0.01, 0.1),32,32);
+        const starMat = new THREE.MeshLambertMaterial();
+        //starMat.color.set(0x000000)
+        starMat.emissive.set(getColor(randomInteger(3000, 40000)))
+
+        const star = new THREE.Mesh(starGeo, starMat);
+        const maxDistance = 15
+        star.position.set(random(-maxDistance, maxDistance),random(-maxDistance, maxDistance),random(-maxDistance, maxDistance))
+        scene.add(star)
+      }
+
+      for(let i=0; i < randomInteger(100, 500); i++){
+          createStar(scene)
+      }
+
+
+      console.log("add constellations")
+    }
+
+    const scene = new THREE.Scene();
+    const backgroundColor = new THREE.Color("hsl(209, 100%, 12%)")
+  
     scene.background = backgroundColor;
 
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-    const renderer = new THREE.WebGLRenderer();
-    //renderer.setPixelRatio(window.devicePixelRatio)
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+
     renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    const controls = new THREE.OrbitControls( camera, document.body );
+    controls.enableZoom = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.1;
+
     document.body.appendChild( renderer.domElement );
 
-    const light = new THREE.SpotLight( 0xffffff );
-    light.position.set(0, 5, 0);
-    light.castShadow = true;
-    light.shadow.mapSize.width = 1024;
-    light.shadow.mapSize.height = 1024;
+    camera.position.z = 20;
+    controls.update();
 
-    light.shadow.camera.near = 500;
-    light.shadow.camera.far = 4000;
-    light.shadow.camera.fov = 30;
-    scene.add( light );
-
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial( { color: 0x00aa00 } );
-    const cube = new THREE.Mesh( geometry, material );
-    cube.castShadow= true;
-    scene.add( cube );
-
-    const helper = new THREE.CameraHelper( light.shadow.camera );
-    scene.add( helper );
-
-
-
-    camera.position.z = 5;
+    addConstellation(scene)
 
     const animate = function () {
 				requestAnimationFrame( animate );
 
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
+        controls.update()
 
 				renderer.render( scene, camera );
 			};

@@ -1,6 +1,9 @@
+$font-size-text: 1.5rem;
+
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Open Sans, sans-serif;
   color: white;
 }
 
@@ -13,6 +16,16 @@ canvas {
   width: 100%;
 }
 
+a {
+  color: hsl(199, 100%, 80%);
+  text-decoration: none;
+  font-size: $font-size-text;
+}
+
+a:hover {
+  color: hsl(199, 100%, 60%);
+  text-decoration: underline;
+}
 
 
 section {
@@ -28,5 +41,5 @@ h2 {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: $font-size-text;
 }
