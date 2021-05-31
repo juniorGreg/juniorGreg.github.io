@@ -28,6 +28,138 @@
     <title>{{ site.title }}</title>
   </head>
   <body>
-    {{ content }}
+    <nav>
+
+      <label class="switch">
+        <input type="checkbox" onclick="enableOrbitControls()" id="controlCheckbox">
+        <span class="slider round"></span>
+      </label>
+    </nav>
+    <div id="content">
+        {{ content }}
+    </div>
+
+    <script type="text/javascript" src="/assets/js/three.js"></script>
+    <script type="text/javascript" type="Module" src="/assets/js/OrbitControls.js">
+
+    </script>
+
+    <script type="text/javascript">
+
+        function random(min, max) {
+          const number = min + Math.random() * (max - min);
+          //console.log(number)
+          return number
+        }
+
+        function randomInteger(min, max){
+
+          return Math.round(random(min, max))
+        }
+
+        function getColor(temp){
+          //hue between 0 and 250
+          //temp between 3500K and 10000K
+          let hue = (temp - 3000) * 250 / 37000;
+          let luminosity = 50 + 50*Math.round(Math.abs(Math.tanh((temp - 2000)/20000)));
+
+          /*if(luminosity > 99){
+            console.log(hue)
+          }*/
+
+          return `hsl(${hue}, 100%, ${luminosity}%)`
+        }
+
+        function addConstellation(scene){
+          function createStar(scene){
+
+            const maxDistance = 15
+            const radius = random(0.01, 0.1)
+            const x = random(-maxDistance, maxDistance);
+            const y = random(-maxDistance, maxDistance);
+            const z = random(-maxDistance, maxDistance);
+            const color = getColor(randomInteger(3000, 40000))
+
+            const starGeo = new THREE.SphereGeometry(radius,32,32);
+            const starGeo1 = new THREE.SphereGeometry(radius*1.2,32,32);
+            const starGeo2 = new THREE.SphereGeometry(radius*1.5,32,32);
+            const starMat = new THREE.MeshBasicMaterial();
+            const starMat1 = new THREE.MeshBasicMaterial();
+            const starMat2 = new THREE.MeshBasicMaterial();
+
+            starMat.color.set(color)
+            starMat1.color.set(color)
+            starMat1.transparent = true;
+            starMat1.opacity = 0.5;
+            starMat2.color.set(color)
+            starMat2.transparent = true;
+            starMat2.opacity = 0.1;
+
+            const star = new THREE.Mesh(starGeo, starMat);
+            const star1 = new THREE.Mesh(starGeo1, starMat1);
+            const star2 = new THREE.Mesh(starGeo2, starMat2);
+
+
+
+            star.position.set(x, y, z)
+            star1.position.set(x, y, z)
+            star2.position.set(x, y, z)
+
+            scene.add(star)
+            scene.add(star1)
+            scene.add(star2)
+          }
+
+          for(let i=0; i < randomInteger(100, 500); i++){
+              createStar(scene)
+          }
+
+
+          console.log("add constellations")
+        }
+
+        const scene = new THREE.Scene();
+        const backgroundColor = new THREE.Color("hsl(209, 100%, 12%)")
+
+        scene.background = backgroundColor;
+
+        const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight + 200), 0.1, 1000 );
+
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+        renderer.setSize( window.innerWidth, window.innerHeight + 200);
+
+        const controls = new THREE.OrbitControls( camera, document.getElementById("content") );
+        controls.enabled=false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.1;
+
+        document.body.appendChild( renderer.domElement );
+
+        camera.position.z = 20;
+        controls.update();
+
+        addConstellation(scene)
+
+        const animate = function () {
+    				requestAnimationFrame( animate );
+
+            controls.update()
+
+    				renderer.render( scene, camera );
+    			};
+
+    		animate();
+
+        enableOrbitControls = function() {
+          console.log("check")
+          var checkbox = document.getElementById("controlCheckbox");
+          controls.enabled = checkbox.checked;
+        }
+
+        console.log("loader")
+    </script>
+
   </body>
 </html>

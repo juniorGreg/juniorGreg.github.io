@@ -1,10 +1,13 @@
 $font-size-text: 1.5rem;
-
+$background-color: hsl(209, 100%, 12%);
 
 body {
   margin: 0;
   font-family: Open Sans, sans-serif;
   color: white;
+  text-shadow: 0 0 20px $background-color;
+  background-color: $background-color;
+
 }
 
 canvas {
@@ -27,13 +30,17 @@ a:hover {
   text-decoration: underline;
 }
 
+$margin-side-section: 9%;
 
 section {
-  margin: 9%;
+  margin-left: $margin-side-section;
+  margin-right: $margin-side-section;
+  margin-top: 5%
 }
 
+
 h1 {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
 }
 
 h2 {
@@ -42,4 +49,18 @@ h2 {
 
 p {
   font-size: $font-size-text;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-left: 7%;
+  padding-right: 7%;
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+}
+
+nav > * {
+  margin: 0.5%;
 }
