@@ -82,32 +82,47 @@
 
             const starGeo = new THREE.SphereGeometry(radius,32,32);
             const starGeo1 = new THREE.SphereGeometry(radius*1.2,32,32);
-            const starGeo2 = new THREE.SphereGeometry(radius*1.5,32,32);
+
             const starMat = new THREE.MeshBasicMaterial();
             const starMat1 = new THREE.MeshBasicMaterial();
-            const starMat2 = new THREE.MeshBasicMaterial();
+
 
             starMat.color.set(color)
             starMat1.color.set(color)
             starMat1.transparent = true;
             starMat1.opacity = 0.5;
-            starMat2.color.set(color)
-            starMat2.transparent = true;
-            starMat2.opacity = 0.1;
+
 
             const star = new THREE.Mesh(starGeo, starMat);
             const star1 = new THREE.Mesh(starGeo1, starMat1);
-            const star2 = new THREE.Mesh(starGeo2, starMat2);
 
 
+            const times = [0, 1]
+            const values = [0.9, 0.9, 0.9, 1.2, 1.2, 1.2]
+
+            const scaleKF = new THREE.VectorKeyframeTrack(".scale", times, values);
+            const scintingClip = new THREE.AnimationClip("scinting", random(0.5, 3), [
+              scaleKF
+            ])
+
+
+            const mixer = new THREE.AnimationMixer(star1);
+            const action = mixer.clipAction(scintingClip);
+            action.loop=THREE.LoopPingPong
 
             star.position.set(x, y, z)
             star1.position.set(x, y, z)
-            star2.position.set(x, y, z)
+
+
+            //star2.scale.set(2,2,2)
 
             scene.add(star)
             scene.add(star1)
-            scene.add(star2)
+
+
+            action.play()
+
+            mixers.push(mixer);
           }
 
           for(let i=0; i < randomInteger(100, 500); i++){
@@ -117,6 +132,9 @@
 
           console.log("add constellations")
         }
+
+        const mixers = []
+        const clock = new THREE.Clock()
 
         const scene = new THREE.Scene();
         const backgroundColor = new THREE.Color("hsl(209, 100%, 12%)")
@@ -140,12 +158,21 @@
         camera.position.z = 20;
         controls.update();
 
+
+
         addConstellation(scene)
 
         const animate = function () {
-    				requestAnimationFrame( animate );
 
+
+    				requestAnimationFrame( animate );
+            const delta = clock.getDelta()
             controls.update()
+
+            mixers.forEach((mixer, i) => {
+              mixer.update(delta)
+            });
+
 
     				renderer.render( scene, camera );
     			};
