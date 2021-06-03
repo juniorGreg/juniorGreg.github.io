@@ -3,7 +3,9 @@ layout: default
 title: main
 ---
 
-<section markdown="1">
+<section markdown="1" id="intro">
+
+
 
 # Junior Grégoire, Développeur logiciel
 
@@ -14,7 +16,7 @@ title: main
   *Ce portfolio a été implémenté avec three.js et jekyll.*
 </section>
 
-<section markdown="1">
+<section markdown="1" id="projets">
 
 ## Mes projets
 ### Le blogue du MoisiOMètre
@@ -25,20 +27,28 @@ Il y a aussi un sous-projet relié au blogue du MoisiOMètre. C’est [le Bullsh
 
 ### ParkMonBaïk
 
-  <a href="https://parkmonbaik.xyz">ParkMonBaïk</a>
+[ParkMonBaïk](https://parkmonbaik.xyz) est un projet qui est à sa deuxième itération. Ça fait des années que je travaille dessus en temps perdu, mais un jour je caresse le rêve de le finir. L’idée du projet m’est venu est regardant le données ouvertes de la ville de Montréal qui sont disponible sur [donnees.montreal.com](https://donnees.montreal.ca/).
+
+Je me déplace souvent en vélo à Montréal et souvent je me cherche un endroit pour le stationner. Sur le site de données de la ville, il y a des informations sur la position des arceaux à vélos et d’autres emplacements pour cadenasser un vélo. Quand, j’ai vu ça, je me suis dit que ça serait bien de placer ces positions sur une carte géographique. Je pourrais ainsi voir les différentes options quand je me cherche un emplacement pour attacher ma bicyclette.
+
+Pour le moment, je peux afficher ces endroits sur un plan de la ville grâce à [Leaflet](https://leafletjs.com/) et [OpenStreeMap](https://www.openstreetmap.org/). Par contre, les données de la ville de Montréal sont  incomplètes. Ils manquent des positions, donc la prochaine serait de donner à l’utilisateur la possibilité d’ajouter d’autres emplacements. Comme ça, éventuellement peut-être les utilisateurs motivés pourraient compléter les données eux-mêmes.
+
+Je suis quand même bien avancé dans l’implémentation d’une version complète. Un jour peut-être je vais aboutir à quelque chose d’intéressant et utile pour les cyclistes de Montréal.
+
 </section>
 
-<section markdown="1">
+<section markdown="1" id="parcours">
 ## Mon parcours
 
   mon parcours
 
 </section>
 
-<section markdown="0">
+<section markdown="0" id="contact">
   <h2>Contact</h2>
-  <p>Couriel: <a href="mailto:{{site.email}}">{{site.email}}</a></p>
-  <p>Github: <a href="https://github.com/{{site.github_username}}">{{site.github_username}}</a></p>
 
-
+  <div class="contacts">
+    <span>Couriel: <a href="mailto:{{site.email}}">{{site.email}}</a></span>
+    <span>Github: <a href="https://github.com/{{site.github_username}}">{{site.github_username}}</a></span>
+  </div>
 </section>

@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="fr" class="has-navbar-fixed-top">
+<html lang="fr" >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,14 +30,24 @@
   <body>
     <nav>
 
+      <a href="#intro">Intro</a>
+      <a href="#projets">Projets</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#contact">Contact</a>
+
       <label class="switch">
         <input type="checkbox" onclick="enableOrbitControls()" id="controlCheckbox">
         <span class="slider round"></span>
+        <span class="tooltiptext">Active l'interaction avec l'arrière-plan</span>
       </label>
     </nav>
     <div id="content">
         {{ content }}
+        <footer>&copy;2021</footer>
     </div>
+
+
+
 
     <script type="text/javascript" src="/assets/js/three.js"></script>
     <script type="text/javascript" type="Module" src="/assets/js/OrbitControls.js">
@@ -103,7 +113,8 @@
             const scaleKF = new THREE.VectorKeyframeTrack(".scale", times, values);
             const scintingClip = new THREE.AnimationClip("scinting", random(0.5, 3), [
               scaleKF
-            ])
+            ],
+            THREE.InterpolateDiscrete )
 
 
             const mixer = new THREE.AnimationMixer(star1);
@@ -140,6 +151,8 @@
         const backgroundColor = new THREE.Color("hsl(209, 100%, 12%)")
 
         scene.background = backgroundColor;
+
+
 
         const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight + 200), 0.1, 1000 );
 

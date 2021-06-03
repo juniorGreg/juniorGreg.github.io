@@ -1,6 +1,10 @@
 $font-size-text: 1.5rem;
 $background-color: hsl(209, 100%, 12%);
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: Open Sans, sans-serif;
@@ -51,16 +55,75 @@ p {
   font-size: $font-size-text;
 }
 
+$nav-padding: 8%;
+
+
 nav {
   background-color: rgba(0, 0, 0, 0.5);
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: $nav-padding;
+  padding-right: $nav-padding;
   position: fixed;
   top:0;
   left: 0;
-  width: 100%;
+  width: calc(100% - #{2 * $nav-padding});
+  display: inline-flex;
+  justify-content: center;
+  align-items:center;
 }
 
 nav > * {
-  margin: 0.5%;
+  margin: 0.8%;
+  font-size: $font-size-text * 0.7
+}
+
+.switch {
+  margin-left: auto;
+  order: 2;
+}
+
+.tooltiptext {
+  opacity: 0.8;
+  position: absolute;
+  background-color: white;
+  color: $background-color;
+  padding: 0.6rem;
+  text-align: center;
+  border-radius: 11px;
+  width: 20rem;
+  top: 2.7rem;
+  right: 0rem;
+  visibility:hidden;
+}
+
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 98%;
+  left: 90%;
+  margin-left: -0.5rem;
+ border-width: 0.5rem;
+ border-style: solid;
+ border-color: transparent transparent white transparent;
+
+}
+
+.switch:hover .tooltiptext {
+  visibility: visible;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contacts span {
+  margin: 3rem;
+}
+
+footer {
+  width: 100%;
+  height: 1000px;
+  margin-top: 990px;
+  text-align: center;
 }
