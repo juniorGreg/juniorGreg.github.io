@@ -1,4 +1,4 @@
-$font-size-text: 1.5rem;
+$font-size-text: 1.3rem;
 $background-color: hsl(209, 100%, 12%);
 
 html {
@@ -7,6 +7,7 @@ html {
 
 body {
   margin: 0;
+  padding-top: 2.5rem;
   font-family: Open Sans, sans-serif;
   color: white;
   text-shadow: 0 0 20px $background-color;
@@ -44,22 +45,23 @@ section {
 
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2.1rem;
 }
 
 p {
   font-size: $font-size-text;
 }
 
-$nav-padding: 8%;
+$nav-padding: 9%;
+$navbar-color: rgba(0, 0, 0, 0.8);
 
 
 nav {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $navbar-color;
   padding-left: $nav-padding;
   padding-right: $nav-padding;
   position: fixed;
@@ -69,14 +71,31 @@ nav {
   display: inline-flex;
   justify-content: center;
   align-items:center;
-}
+  height: 3rem;
 
-nav > * {
-  margin: 0.8%;
-  font-size: $font-size-text * 0.7
+  .arrow img {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: none;
+  }
+
+  .menu {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    //justify-content: center;
+    align-items:center;
+
+    & > * {
+      margin: 0.8%;
+      font-size: $font-size-text * 0.7
+    }
+
+  }
 }
 
 .switch {
+  margin: 0.8%;
   margin-left: auto;
   order: 2;
 }
@@ -115,15 +134,63 @@ nav > * {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .contacts span {
-  margin: 3rem;
+  margin: 1rem;
+  margin-top: 3rem;
+}
+
+$contacts-icons-size: 5rem;
+
+.contacts img {
+  width: $contacts-icons-size;
+  height: $contacts-icons-size;
 }
 
 footer {
   width: 100%;
-  height: 1000px;
+
   margin-top: 990px;
   text-align: center;
+  display: flex;
+
+  span {
+    width: 100%;
+    align-self: flex-end;
+   padding-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px){
+  nav .arrow img {
+    display: block;
+  }
+
+  nav .menu {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top:3rem;
+    left: 0;
+    width: 15rem;
+    height: 13rem;
+    background-color: $navbar-color;
+
+    & > * {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+
+    }
+
+  }
+}
+
+@media screen and (max-width: 375px){
+  h1 {
+    font-size: 2.5rem;
+  }
 }

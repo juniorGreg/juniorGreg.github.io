@@ -29,11 +29,16 @@
   </head>
   <body>
     <nav>
-
-      <a href="#intro">Intro</a>
-      <a href="#projets">Projets</a>
-      <a href="#parcours">Parcours</a>
-      <a href="#contact">Contact</a>
+      <div class="arrow">
+        <img src="./assets/images/downarrow.svg" alt="menu arrow">
+      </div>
+      <div class="menu">
+        <a href="#intro">Intro</a>
+        <a href="#projets">Projets</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#peuxfaire">Qu'est-ce que je peux faire ?</a>
+        <a href="#contact">Contact</a>
+      </div>
 
       <label class="switch">
         <input type="checkbox" onclick="enableOrbitControls()" id="controlCheckbox">
@@ -43,7 +48,7 @@
     </nav>
     <div id="content">
         {{ content }}
-        <footer>&copy;2021</footer>
+        <footer> <span> &copy; 2021</span></footer>
     </div>
 
 
@@ -56,6 +61,23 @@
 
     <script type="text/javascript">
 
+      /* Ui logic code */
+      const menuarrow = document.querySelector(".arrow");
+      const menu = document.querySelector(".menu");
+
+      menuarrow.onclick = () => {
+        console.log("MENUUUUUUUUUUU");
+        const visibility = menu.style.visibility;
+
+        if(visibility === "hidden"){
+          menu.style.visibility = "visible";
+        }else{
+          menu.style.visibility = "hidden";
+        }
+
+      }
+
+      /* start background rendering */
         function random(min, max) {
           const number = min + Math.random() * (max - min);
           //console.log(number)
@@ -196,6 +218,10 @@
           console.log("check")
           var checkbox = document.getElementById("controlCheckbox");
           controls.enabled = checkbox.checked;
+
+          setTimeout(()=>{
+            document.querySelector(".tooltiptext").style.display= "none";
+          }, 5000)
         }
 
         console.log("loader")
