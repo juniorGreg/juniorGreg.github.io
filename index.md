@@ -5,9 +5,10 @@ title: main
 
 <section markdown="1" id="intro">
 
-
-
-# Junior Grégoire, Développeur logiciel
+<div class="title" mardown="1">
+  <img alt="selfie vector image" src="./assets/images/selfy.svg" class="title_img">
+  <h1>Junior Grégoire, Développeur logiciel</h1>
+</div>
 
   Bienvenue sur mon portfolio. C’est ici que je présente mes projets afin de démontrer mes compétences professionnelles en informatiques. J’espère pouvoir intéresser de futurs collaborateurs et ainsi faire profiter mon modeste savoir-faire pour faire avancer des projets passionnants et innovants pour la société québécoise et l’humanité.
 
@@ -66,5 +67,6 @@ Maintenant que vous savez ça, vous pouvez décider si je suis engageable ou pas
   <div class="contacts">
     <span><a href="mailto:{{site.email}}"><img src="./assets/images/email.svg" alt="icon courriel"></a></span>
     <span><a href="https://github.com/{{site.github_username}}"><img src="./assets/images/github.svg" alt="icon github"></a></span>
+    <span><a href="https://github.com/{{site.github_username}}"><img src="./assets/images/facebook.svg" alt="icon facebook"></a></span>
   </div>
 </section>
