@@ -230,8 +230,16 @@ footer {
   }
 }
 
-@media screen and (max-width: 414px){
+@media screen and (max-width: 414px) and (min-width: 320px){
   h1 {
     font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 320px){
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 7rem;
+    margin-bottom: 10rem;
   }
 }
