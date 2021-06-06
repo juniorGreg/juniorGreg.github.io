@@ -68,15 +68,19 @@
       const menu = document.querySelector(".menu");
 
       menuarrow.onclick = () => {
-        console.log("MENUUUUUUUUUUU");
-        const visibility = menu.style.visibility;
 
-        if(visibility === "hidden"){
-          menu.style.visibility = "visible";
+        const visibility = menu.style.opacity;
+
+        if(visibility === "0"){
+          menu.style.opacity = "1";
         }else{
-          menu.style.visibility = "hidden";
+          menu.style.opacity = "0";
         }
 
+      }
+
+      menu.onclick = () => {
+        menu.style.opacity ="0";
       }
 
       /* start background rendering */
