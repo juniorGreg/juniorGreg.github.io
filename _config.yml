@@ -20,10 +20,9 @@
 
 title: Junior Grégoire, Développeur logiciel
 email: junior.gregoire@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Bienvenue sur mon portfolio. C’est ici que je présente mes projets afin de démontrer mes compétences professionnelles en informatiques.
+description: Bienvenue sur mon portfolio. C’est ici que je présente mes projets afin de démontrer mes compétences professionnelles en informatiques.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "juniorgreg.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: https://juniorgreg.github.io # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: JuniorGregoire4
 github_username:  juniorGreg
 
