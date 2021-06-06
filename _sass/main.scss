@@ -1,6 +1,11 @@
 $font-size-text: 1.3rem;
 $background-color: hsl(209, 100%, 12%);
 
+@font-face {
+  font-family: Oswald;
+  src: url(../fonts/Oswald-VariableFont_wght.ttf) format('truetype')
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -46,24 +51,37 @@ section {
 
 h1 {
   font-size: 3rem;
+  line-height:  2.8rem;
+  transform: scale(1,3);
+  margin-top: 5.5rem;
+  margin-bottom: 6rem;
+  width: 100%;
+}
+
+h1, h2, h3 {
+  font-family: Oswald, Open sans, sans-serif;
 }
 
 img.title_img{
   float: left;
-  height: 10rem;
-  margin-right: 1rem;
+  height: 12rem;
+  margin: 2rem;
 }
 
 .title {
-  //height: 10rem;
+  height: 100%;
   display: flex;
   align-items:center;
-  margin: 1rem;
   width: 100%;
 }
 
 h2 {
   font-size: 2.1rem;
+  margin-top: 1rem;
+}
+
+h3 {
+  margin-top: 4rem;
 }
 
 p {
@@ -184,7 +202,11 @@ footer {
 
   .title {
     flex-direction: column;
+
     margin-top: 2rem;
+
+
+
   }
 
   nav .menu {
@@ -208,7 +230,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 414px){
   h1 {
     font-size: 2.5rem;
   }
