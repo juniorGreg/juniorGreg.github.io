@@ -229,10 +229,12 @@ footer {
     width: 15rem;
     height: 13rem;
 
-
+    z-index: 20;
 
     &.hide {
         opacity: 0;
+        z-index: -20;
+        pointer-events: none;
     }
 
     background-color: $navbar-color;
