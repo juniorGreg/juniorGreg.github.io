@@ -44,7 +44,7 @@
       <div class="arrow">
         <img src="./assets/images/downarrow.svg" alt="menu arrow">
       </div>
-      <div class="menu">
+      <div class="menu hide">
         <a href="#intro">Intro</a>
         <a href="#projets">Projets</a>
         <a href="#parcours">Parcours</a>
@@ -78,20 +78,9 @@
       const menu = document.querySelector(".menu");
 
       menuarrow.onclick = () => {
-
-        const visibility = menu.style.opacity;
-
-        if(visibility === "0"){
-          menu.style.opacity = "1";
-        }else{
-          menu.style.opacity = "0";
-        }
-
+        menu.classList.toggle("hide")
       }
 
-      menu.onclick = () => {
-        menu.style.opacity ="0";
-      }
 
       /* start background rendering */
         function random(min, max) {

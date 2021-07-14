@@ -10,6 +10,13 @@ html {
   scroll-behavior: smooth;
 }
 
+:target:before {
+    content: "";
+    display: block;
+    height: 3rem;
+    margin: -3rem 0 0;
+}
+
 body {
   margin: 0;
   padding-top: 2.5rem;
@@ -113,12 +120,18 @@ nav {
     display: none;
   }
 
+
+
   .menu {
     width: 100%;
     height: 100%;
     display:flex;
     //justify-content: center;
     align-items:center;
+
+    &.hide {
+      opacity: 1;
+    }
 
     & > * {
       margin: 0.8%;
@@ -193,7 +206,7 @@ footer {
   span {
     width: 100%;
     align-self: flex-end;
-   padding-bottom: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
@@ -204,11 +217,7 @@ footer {
 
   .title {
     flex-direction: column;
-
     margin-top: 2rem;
-
-
-
   }
 
   nav .menu {
@@ -220,7 +229,11 @@ footer {
     width: 15rem;
     height: 13rem;
 
-    opacity: 0;
+
+
+    &.hide {
+        opacity: 0;
+    }
 
     background-color: $navbar-color;
     z-index: 2;

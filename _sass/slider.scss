@@ -40,6 +40,12 @@
 
 input:checked + .slider {
   background-color: #2196F3;
+
+  &:before{
+    left: 0px;
+  }
+
+
 }
 
 input:focus + .slider {
